@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: carshare-postgres
+    environment:
+      TZ: UTC
+      POSTGRES_DB: carshare
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  postgres_data:

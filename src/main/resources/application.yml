@@ -3,26 +3,21 @@ spring:
     name: car-share-hub
 
   datasource:
-    url: jdbc:h2:mem:carshare
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: jdbc:postgresql://localhost:5432/carshare?options=-c%20timezone=UTC
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: update  # Для розробки - авто-створює схему
+      ddl-auto: update
     show-sql: false
     properties:
       hibernate:
         format_sql: true
 
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-
   liquibase:
-    enabled: false  # Вимкнено для H2 dev. Увімкнемо коли буде MySQL
+    enabled: false
 
 server:
   port: 8080

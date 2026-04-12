@@ -36,9 +36,9 @@ dependencies {
     
     // Liquibase
     implementation("org.liquibase:liquibase-core")
-    
-    // H2 (для розробки)
-    runtimeOnly("com.h2database:h2")
+
+    // PostgreSQL
+    runtimeOnly("org.postgresql:postgresql")
     
     // MapStruct
     implementation("org.mapstruct:mapstruct:1.5.5.Final")
@@ -62,4 +62,9 @@ kapt {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    systemProperty("user.timezone", "UTC")
+}
+
+tasks.withType<JavaExec> {
+    systemProperty("user.timezone", "UTC")
 }
