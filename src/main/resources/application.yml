@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: car-share-hub
+
+  datasource:
+    url: jdbc:h2:mem:carshare
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # Для розробки - авто-створює схему
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  liquibase:
+    enabled: false  # Вимкнено для H2 dev. Увімкнемо коли буде MySQL
+
+server:
+  port: 8080
