@@ -1,12 +1,17 @@
 package com.carsharehub.config
 
+import org.mapstruct.Builder
 import org.mapstruct.InjectionStrategy
+import org.mapstruct.MapperConfig
+import org.mapstruct.MappingConstants
+import org.mapstruct.NullValueCheckStrategy
 import org.mapstruct.ReportingPolicy
 
-@org.mapstruct.MapperConfig(
-    componentModel = "spring",
+@MapperConfig(
+    componentModel = MappingConstants.ComponentModel.SPRING,
     injectionStrategy = InjectionStrategy.CONSTRUCTOR,
-    unmappedTargetPolicy = ReportingPolicy.IGNORE,
-    implementationPackage = "com.carsharehub.dto.mapper.impl"
+    nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
+    builder = Builder(disableBuilder = true),
+    unmappedTargetPolicy = ReportingPolicy.ERROR
 )
 interface MapperConfig

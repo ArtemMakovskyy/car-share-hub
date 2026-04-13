@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  liquibase:
+    enabled: false
+
+jwt:
+  expiration: 86400000
+  secret: testsecretkey123456789012345678901234567890
+
+api:
+  stripe:
+    sk:
+      key: test_stripe_key
+
+bot:
+  name: TestBot
+  token: test_token

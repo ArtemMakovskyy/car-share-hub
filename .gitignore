@@ -38,3 +38,7 @@ out/
 
 ### Kotlin ###
 .kotlin
+/.opencode/
+/.qwen/
+/testsprite_tests/tmp/config.json
+/testsprite_tests/tmp/mcp.log

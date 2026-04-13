@@ -1,8 +1,8 @@
 plugins {
-    kotlin("jvm") version "2.2.21"
-    kotlin("plugin.spring") version "2.2.21"
-    kotlin("kapt") version "2.2.21"
-    id("org.springframework.boot") version "4.0.5"
+    kotlin("jvm") version "2.1.21"
+    kotlin("plugin.spring") version "2.1.21"
+    kotlin("kapt") version "2.1.21"
+    id("org.springframework.boot") version "3.5.0"
     id("io.spring.dependency-management") version "1.1.7"
 }
 
@@ -22,27 +22,27 @@ repositories {
 
 dependencies {
     // Web
-    implementation("org.springframework.boot:spring-boot-starter-webmvc")
-    implementation("tools.jackson.module:jackson-module-kotlin")
-    
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
     // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    
+
     // JPA
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    
+
     // Validation
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    
+
     // Liquibase
     implementation("org.liquibase:liquibase-core")
 
     // PostgreSQL
     runtimeOnly("org.postgresql:postgresql")
-    
+
     // MapStruct
-    implementation("org.mapstruct:mapstruct:1.5.5.Final")
-    kapt("org.mapstruct:mapstruct-processor:1.5.5.Final")
+    implementation("org.mapstruct:mapstruct:1.6.3")
+    kapt("org.mapstruct:mapstruct-processor:1.6.3")
 
     // Security
     implementation("org.springframework.boot:spring-boot-starter-security")
@@ -54,6 +54,8 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testRuntimeOnly("com.h2database:h2")
+    testImplementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 }
 
 kotlin {
@@ -63,7 +65,9 @@ kotlin {
 }
 
 kapt {
-    keepJavacAnnotationProcessors = true
+    arguments {
+        arg("mapstruct.defaultComponentModel", "spring")
+    }
 }
 
 tasks.withType<Test> {
