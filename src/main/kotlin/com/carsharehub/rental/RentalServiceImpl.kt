@@ -70,8 +70,7 @@ class RentalServiceImpl(
         rental.isActive = false
         rentalRepository.save(rental)
 
-        val car = carRepository.findById(rental.car.id!!)
-            .orElseThrow { EntityNotFoundException("Can't get car by id ${rental.car.id}") }
+        val car = rental.car!!
         car.inventoryQuantity += 1
         carRepository.save(car)
 

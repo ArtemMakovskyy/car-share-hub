@@ -26,21 +26,21 @@ class Rental(
     var id: Long? = null,
 
     @Column(name = "rental_date", nullable = false)
-    var rentalDate: LocalDate,
+    var rentalDate: LocalDate? = null,
 
     @Column(name = "return_date", nullable = false)
-    var returnDate: LocalDate,
+    var returnDate: LocalDate? = null,
 
     @Column(name = "actual_return_date")
     var actualReturnDate: LocalDate? = null,
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "car_id", nullable = false)
-    var car: Car,
+    var car: Car? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    var user: User,
+    var user: User? = null,
 
     @Column(name = "is_deleted", nullable = false)
     var isDeleted: Boolean = false,
