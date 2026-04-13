@@ -44,6 +44,9 @@ dependencies {
     implementation("org.mapstruct:mapstruct:1.6.3")
     kapt("org.mapstruct:mapstruct-processor:1.6.3")
 
+    // OpenAPI/Swagger
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9")
+
     // Security
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("io.jsonwebtoken:jjwt-api:0.12.5")
@@ -68,6 +71,7 @@ kapt {
     arguments {
         arg("mapstruct.defaultComponentModel", "spring")
     }
+    correctErrorTypes = true
 }
 
 tasks.withType<Test> {
