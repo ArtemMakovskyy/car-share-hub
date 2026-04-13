@@ -4,6 +4,7 @@ import com.carsharehub.user.User
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import io.swagger.v3.oas.annotations.tags.Tag
+import jakarta.annotation.security.PermitAll
 import jakarta.validation.Valid
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.Authentication
@@ -57,6 +58,7 @@ class PaymentController(
 
     @Operation(summary = "Handle successful payment")
     @GetMapping("/success")
+    @PermitAll
     fun handleSuccessfulPayment(
         @RequestParam(name = "session_id") sessionId: String
     ): String {
@@ -65,6 +67,7 @@ class PaymentController(
 
     @Operation(summary = "Process payment cancellation")
     @GetMapping("/cancel")
+    @PermitAll
     fun processPaymentCancellation(
         @RequestParam(name = "session_id") sessionId: String
     ): String {

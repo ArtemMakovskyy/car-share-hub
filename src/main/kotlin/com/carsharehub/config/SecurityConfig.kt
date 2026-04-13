@@ -41,6 +41,8 @@ class SecurityConfig(
                     .requestMatchers(
                         "/auth/**",
                         "/api/cars/**",
+                        "/payments/success",
+                        "/payments/cancel",
                         "/error",
                         "/swagger-ui/**",
                         "/v3/api-docs/**",
