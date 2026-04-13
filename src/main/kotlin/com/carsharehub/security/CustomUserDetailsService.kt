@@ -1,14 +1,17 @@
 package com.carsharehub.security
 
+import com.carsharehub.user.UserRepository
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 
 @Service
-class CustomUserDetailsService : UserDetailsService {
+class CustomUserDetailsService(
+    private val userRepository: UserRepository
+) : UserDetailsService {
 
     override fun loadUserByUsername(username: String): org.springframework.security.core.userdetails.UserDetails {
-        // TODO: implement user lookup from database
-        throw UsernameNotFoundException("User not found: $username")
+        return userRepository.findUserByEmail(username)
+            .orElseThrow { UsernameNotFoundException("User not found: $username") }
     }
 }

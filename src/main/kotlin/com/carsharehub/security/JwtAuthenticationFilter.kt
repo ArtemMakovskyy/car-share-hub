@@ -21,18 +21,22 @@ class JwtAuthenticationFilter(
         response: HttpServletResponse,
         filterChain: FilterChain,
     ) {
-        val token = extractToken(request)
+        try {
+            val token = extractToken(request)
 
-        if (token != null) {
-            val username = jwtUtil.getUsernameFromToken(token)
-            val userDetails = userDetailsService.loadUserByUsername(username)
+            if (token != null) {
+                val username = jwtUtil.getUsernameFromToken(token)
+                val userDetails = userDetailsService.loadUserByUsername(username)
 
-            if (jwtUtil.isTokenValid(token, userDetails)) {
-                val authentication = UsernamePasswordAuthenticationToken(
-                    userDetails, null, userDetails.authorities
-                )
-                SecurityContextHolder.getContext().authentication = authentication
+                if (jwtUtil.isTokenValid(token, userDetails)) {
+                    val authentication = UsernamePasswordAuthenticationToken(
+                        userDetails, null, userDetails.authorities
+                    )
+                    SecurityContextHolder.getContext().authentication = authentication
+                }
             }
+        } catch (e: Exception) {
+            // Do not set authentication for invalid tokens
         }
 
         filterChain.doFilter(request, response)

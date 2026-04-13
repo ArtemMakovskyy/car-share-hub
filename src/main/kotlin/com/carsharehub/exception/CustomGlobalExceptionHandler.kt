@@ -1,7 +1,9 @@
 package com.carsharehub.exception
 
+import io.jsonwebtoken.JwtException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.AuthenticationException
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
@@ -31,6 +33,22 @@ class CustomGlobalExceptionHandler : ResponseEntityExceptionHandler() {
         return ResponseEntity(
             mapOf("error" to ex.message.orEmpty()),
             HttpStatus.BAD_REQUEST
+        )
+    }
+
+    @ExceptionHandler(AuthenticationException::class)
+    fun handleAuthenticationException(ex: AuthenticationException): ResponseEntity<Map<String, String>> {
+        return ResponseEntity(
+            mapOf("error" to "Invalid credentials"),
+            HttpStatus.UNAUTHORIZED
+        )
+    }
+
+    @ExceptionHandler(JwtException::class)
+    fun handleJwtException(ex: JwtException): ResponseEntity<Map<String, String>> {
+        return ResponseEntity(
+            mapOf("error" to "Invalid JWT token"),
+            HttpStatus.UNAUTHORIZED
         )
     }
 

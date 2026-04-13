@@ -1,6 +1,7 @@
 package com.carsharehub.config
 
 import com.carsharehub.security.JwtAuthenticationFilter
+import com.carsharehub.security.RestAuthenticationEntryPoint
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
@@ -20,6 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 class SecurityConfig(
     private val jwtAuthenticationFilter: JwtAuthenticationFilter,
     private val userDetailsService: org.springframework.security.core.userdetails.UserDetailsService,
+    private val authEntryPoint: RestAuthenticationEntryPoint,
 ) {
 
     @Bean
@@ -48,6 +50,7 @@ class SecurityConfig(
             }
             .httpBasic { it.disable() }
             .formLogin { it.disable() }
+            .exceptionHandling { it.authenticationEntryPoint(authEntryPoint) }
             .userDetailsService(userDetailsService)
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
 
