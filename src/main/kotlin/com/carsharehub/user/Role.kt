@@ -21,9 +21,9 @@ data class Role(
     var id: Long? = null,
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, unique = true)
+    @Column(name = "name", nullable = false, unique = true)
     var name: RoleName,
 
-    @Column(nullable = false)
+    @Column(name = "is_deleted", nullable = false)
     var isDeleted: Boolean = false
 )

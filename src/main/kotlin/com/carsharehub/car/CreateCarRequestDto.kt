@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Positive
+import java.math.BigDecimal
 
 data class CreateCarRequestDto(
     @field:NotBlank
@@ -22,5 +23,5 @@ data class CreateCarRequestDto(
     val inventoryQuantity: Int = 0,
 
     @field:Positive
-    val dailyFee: Double = 0.0
+    val dailyFee: BigDecimal = BigDecimal.ZERO
 )

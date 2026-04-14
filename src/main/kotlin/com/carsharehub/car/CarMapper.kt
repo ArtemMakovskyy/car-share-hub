@@ -12,10 +12,12 @@ interface CarMapper {
     fun toDto(car: Car): CarDto
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "deleted", ignore = true)
     @Mapping(target = "type", source = "type", qualifiedByName = ["stringToCarType"])
     fun toEntity(dto: CreateCarRequestDto): Car
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "deleted", ignore = true)
     @Mapping(target = "type", source = "type", qualifiedByName = ["stringToCarType"])
     fun updateCarFromDto(dto: CreateCarRequestDto, @MappingTarget car: Car)
 

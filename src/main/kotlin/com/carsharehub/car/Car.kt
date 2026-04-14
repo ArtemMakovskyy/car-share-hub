@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
+import java.math.BigDecimal
 
 @Entity
 @Table(name = "cars")
@@ -16,19 +17,22 @@ data class Car(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0,
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "model", nullable = false)
     var model: String = "",
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "brand", nullable = false)
     var brand: String = "",
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "type", nullable = false)
     var type: CarType = CarType.SEDAN,
 
-    @Column(nullable = false)
+    @Column(name = "inventory", nullable = false)
     var inventoryQuantity: Int = 0,
 
-    @Column(nullable = false)
-    var dailyFee: Double = 0.0
+    @Column(name = "daily_fee", nullable = false, precision = 10, scale = 2)
+    var dailyFee: BigDecimal = BigDecimal.ZERO,
+
+    @Column(name = "is_deleted", nullable = false)
+    var isDeleted: Boolean = false
 )

@@ -45,7 +45,7 @@ class StripePaymentServiceImpl(
         val paymentType = PaymentType.valueOf(createPaymentSessionDto.paymentType)
         val priceHandler = priceStrategy.get(paymentType)
 
-        val dailyFee = BigDecimal(car.dailyFee)
+        val dailyFee = car.dailyFee
         val fineMultiplier = BigDecimal("1.2")
         val smallChange = BigDecimal(100)
 

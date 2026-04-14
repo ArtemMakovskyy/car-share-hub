@@ -36,7 +36,7 @@ class User : UserDetails {
     @Column(nullable = false)
     var lastName: String = ""
 
-    @Column(nullable = false)
+    @Column(name = "password", nullable = false)
     private var _password: String = ""
 
     override fun getPassword(): String = _password
