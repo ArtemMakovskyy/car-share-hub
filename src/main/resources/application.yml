@@ -3,9 +3,9 @@ spring:
     name: car-share-hub
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/carshare?options=-c%20timezone=UTC
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/carshare?options=-c%20timezone=UTC
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -17,7 +17,8 @@ spring:
         format_sql: true
 
   liquibase:
-    enabled: false
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
 
 server:
   port: 8080
