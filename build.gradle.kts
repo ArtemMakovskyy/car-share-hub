@@ -4,6 +4,7 @@ plugins {
     kotlin("kapt") version "2.1.21"
     id("org.springframework.boot") version "3.5.0"
     id("io.spring.dependency-management") version "1.1.7"
+    id("org.jlleitschuh.gradle.ktlint") version "12.3.0"
 }
 
 group = "com.carsharehub"
@@ -89,4 +90,17 @@ tasks.withType<Test> {
 
 tasks.withType<JavaExec> {
     systemProperty("user.timezone", "UTC")
+}
+
+ktlint {
+    version.set("1.5.0")
+    android.set(false)
+    ignoreFailures.set(false)
+    kotlinScriptAdditionalPaths {
+        include(fileTree("scripts/"))
+    }
+    filter {
+        exclude("**/generated/**")
+        include("**/kotlin/**")
+    }
 }

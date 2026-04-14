@@ -7,9 +7,6 @@ build/
 
 ### STS ###
 .apt_generated
-.classpath
-.factorypath
-.project
 .settings
 .springBeans
 .sts4-cache
@@ -42,3 +39,8 @@ out/
 /.qwen/
 /testsprite_tests/tmp/config.json
 /testsprite_tests/tmp/mcp.log
+/testsprite_tests/
+
+### Environment ###
+.env
+.env.*
