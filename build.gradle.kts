@@ -27,6 +27,7 @@ dependencies {
 
     // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("io.github.microutils:kotlin-logging-jvm:3.0.5")
 
     // JPA
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -56,12 +57,16 @@ dependencies {
     // Stripe
     implementation("com.stripe:stripe-java:24.16.0")
 
+    // Telegram Bot
+    implementation("org.telegram:telegrambots:6.9.7.0")
+
     // Tests
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testRuntimeOnly("com.h2database:h2")
     testImplementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
 }
 
 kotlin {

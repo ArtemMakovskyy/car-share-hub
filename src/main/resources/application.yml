@@ -20,8 +20,20 @@ spring:
     enabled: false
 
 server:
-  port: 8081
+  port: 8080
 
 jwt:
   secret: my-secret-key-for-jwt-token-generation-must-be-at-least-256-bits-long
   expiration: 86400000
+
+telegram:
+  bot:
+    enabled: ${TELEGRAM_BOT_ENABLED:false}
+    username: ${TELEGRAM_BOT_USERNAME:carsharehub_bot}
+    token: ${TELEGRAM_BOT_TOKEN:your-bot-token-here}
+
+notification:
+  scheduler:
+    overdue-cron: "0 0 9 * * *"
+    daily-cron: "0 0 8 * * *"
+    payment-cron: "0 0 10 * * *"
