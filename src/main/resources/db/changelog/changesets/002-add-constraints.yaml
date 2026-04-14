@@ -1,0 +1,60 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002
+      author: developer
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: users_roles
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_users_roles_user
+
+        - addForeignKeyConstraint:
+            baseTableName: users_roles
+            baseColumnNames: role_id
+            referencedTableName: roles
+            referencedColumnNames: id
+            constraintName: fk_users_roles_role
+
+        - addForeignKeyConstraint:
+            baseTableName: rentals
+            baseColumnNames: car_id
+            referencedTableName: cars
+            referencedColumnNames: id
+            constraintName: fk_rentals_car
+
+        - addForeignKeyConstraint:
+            baseTableName: rentals
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_rentals_user
+
+        - addForeignKeyConstraint:
+            baseTableName: payments
+            baseColumnNames: rental_id
+            referencedTableName: rentals
+            referencedColumnNames: id
+            constraintName: fk_payments_rental
+
+        - createIndex:
+            tableName: rentals
+            indexName: idx_rentals_car_id
+            columns:
+              - column:
+                  name: car_id
+
+        - createIndex:
+            tableName: rentals
+            indexName: idx_rentals_user_id
+            columns:
+              - column:
+                  name: user_id
+
+        - createIndex:
+            tableName: payments
+            indexName: idx_payments_rental_id
+            columns:
+              - column:
+                  name: rental_id
